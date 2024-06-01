@@ -1,15 +1,56 @@
-Source: template-repository
-Section: unknown
+Source: golang-github-jcmturner-gokrb5.v8
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Uploaders: Matthew Vernon <matthew@debian.org>
+Section: golang
+Testsuite: autopkgtest-pkg-go
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends: debhelper-compat (= 13),
+               dh-golang,
+               golang-any,
+               golang-github-gorilla-sessions-dev,
+               golang-github-hashicorp-go-uuid-dev,
+               golang-github-jcmturner-aescts.v2-dev,
+               golang-github-jcmturner-dnsutils.v2-dev,
+               golang-github-jcmturner-gofork-dev,
+	       golang-github-jcmturner-goidentity.v6-dev,
+	       golang-github-jcmturner-rpc.v2-dev,
+               golang-github-stretchr-testify-dev,
+               golang-golang-x-crypto-dev
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-github-jcmturner-gokrb5.v8
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-github-jcmturner-gokrb5.v8.git
+Homepage: https://github.com/jcmturner/gokrb5
+Rules-Requires-Root: no
+XS-Go-Import-Path: github.com/jcmturner/gokrb5,
+		   github.com/jcmturner/gokrb5/v8
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: golang-github-jcmturner-gokrb5.v8-dev
+Architecture: all
+Multi-Arch: foreign
+Depends: golang-github-gorilla-sessions-dev,
+         golang-github-hashicorp-go-uuid-dev,
+         golang-github-jcmturner-aescts.v2-dev,
+         golang-github-jcmturner-dnsutils.v2-dev,
+         golang-github-jcmturner-gofork-dev,
+	 golang-github-jcmturner-goidentity.v6-dev,
+	 golang-github-jcmturner-rpc.v2-dev,
+         golang-github-stretchr-testify-dev,
+         golang-golang-x-crypto-dev,
+         ${misc:Depends}
+Description: Pure Go Kerberos library for clients and services
+ Features:
+  - Pure Go, no dependency on external libraries
+  - No platform specific code
+  - Server Side:
+  -  HTTP handler wrapper implements SPNEGO Kerberos authentication
+  -  HTTP handler wrapper decodes Microsoft AD PAC authorization data
+  - Client Side:
+  -  Client that can authenticate to an SPNEGO Kerberos authenticated
+     web service
+  -  Ability to change client's password
+  - General:
+  -  Kerberos libraries for custom integration
+  -  Parsing Keytab files
+  -  Parsing krb5.conf files
+  -  Parsing client credentials cache files such as
+     /tmp/krb5cc_$(id -u $(whoami))

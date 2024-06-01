@@ -1,0 +1,2 @@
+#Lintian bug #1014885
+golang-github-jcmturner-gokrb5.v8 source: unknown-field Go-Import-Path
